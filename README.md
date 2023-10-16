@@ -1,2 +1,3 @@
 # sgmc
-Repositroy for the SGMC CHNA.
+Repository for the SGMC CHNA.
+
