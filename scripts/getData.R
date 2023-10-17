@@ -19,26 +19,57 @@ data$age <- as.numeric(data$age)
 age_breaks <- c(18, 30, 40, 50, 60, Inf)
 age_labels <- c("18-29", "30-39", "40-49", "50-59", "60+")
 
+# Clean Age
+
 data$age <- cut(data$age, breaks = age_breaks, labels = age_labels, right = FALSE)
+
+# Clean Community Health
 
 data$community_health <- gsub("\\(Alzheimer’s, Arthritis, Parkinson’s, Hearing loss, etc.\\)","", data$community_health)
 
-social_behaviors_data <- data |> 
-  filter(!is.na(social_behaviors)) |> 
-  select(gender, age, hispanic, race, education, hhi, county, social_behaviors) 
+# Clean Healthcare Service
 
-social_behaviors_split <- social_behaviors_data |> 
-  mutate(social_behaviors = strsplit(social_behaviors, ",")) |> 
-  unnest(social_behaviors)
+healthcare_services_original <-
+  data.frame(
+    variable = c(
+      "Additional care and services for patients with heart disease.",
+      "Greater access to primary care including urgent care/walk-in clinics with extended office hours and a focus on low-income individuals.",
+      "Additional access to pediatric care in the community.",
+      "More mental health services including alcohol and substance abuse treatment.",
+      "Expanded access to emergency care including services for higher acuity patients.",
+      "Cancer treatment",
+      "Access to pre-natal care for pregnant women."
+    )
+  )
+
+# Patterns and replacements
+patterns <- c(
+  "Additional care and services for patients with heart disease.",
+  "Greater access to primary care including urgent care/walk-in clinics with extended office hours and a focus on low-income individuals.",
+  "Additional access to pediatric care in the community.",
+  "More mental health services including alcohol and substance abuse treatment.",
+  "Expanded access to emergency care including services for higher acuity patients.",
+  "Cancer treatment",
+  "Access to pre-natal care for pregnant women."
+)
+
+replacements <- c(
+  "Additional care for heart disease",
+  "Greater Access to Primary/Urgent Care",
+  "Greater Access to Pediatric Care",
+  "More Mental Health Services",
+  "Expanded Access to Emergency Care",
+  "Cancer Treatment",
+  "Pre-natal Care"
+)
+
+# Loop through patterns and replacements
+for (i in seq_along(patterns)) {
+  data$healthcare_service <- gsub(patterns[i], replacements[i], data$healthcare_service)
+}
 
 
-community_health_data <- data |> 
-  filter(!is.na(community_health)) |> 
-  select(gender, age, race, hispanic, education, hhi, county, community_health) 
 
-  
-community_health_split <- community_health_data |>
-  mutate(community_health = strsplit(community_health, ",")) |>
-  unnest(community_health)
+
   
 

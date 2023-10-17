@@ -1,3 +1,7 @@
+
+
+
+
 # Define server logic
 server <- function(input, output) {
   
@@ -19,6 +23,21 @@ server <- function(input, output) {
   # Reactive expression for filtering data based on selected factors for social factors
   filtered_social_behaviors_data <- reactive({
     df <- social_behaviors_split  # Replace with your social factors data frame
+    if (input$county != "All") {
+      df <- subset(df, county %in% input$county)
+    }
+    if (input$age != "All") {
+      df <- subset(df, age %in% input$age)
+    }
+    if (input$gender != "All") {
+      df <- subset(df, gender %in% input$gender)
+    }
+    df
+  })
+  
+  # Reactive expression for filtering data based on selected factors for social factors
+  filtered_healthcare_services_data <- reactive({
+    df <- healthcare_services_data  # Replace with your social factors data frame
     if (input$county != "All") {
       df <- subset(df, county %in% input$county)
     }
@@ -80,6 +99,33 @@ server <- function(input, output) {
         geom_bar(stat = "identity") +
         theme_minimal() +
         labs(title = "Social Behavior Counts", x = "Social Behavior", y = "Count") +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+        theme(legend.position = "none")
+    }
+  })
+  
+  # Update the Healthcare Services plot based on the selected data
+  output$healthcare_services_plot <- renderPlot({
+    # Check if any selections have been made for social behaviors
+    req(input$county, input$age, input$gender)
+    
+    # Count factor occurrences based on selected demographic variables for social behaviors
+    factor_counts_healthcare_service <- table(filtered_healthcare_services_data()$healthcare_service)  # Replace with your social factors column name
+    
+    # Check if factor_counts_social is empty or contains only NAs
+    if (length(factor_counts_healthcare_service) == 0 || all(is.na(factor_counts_healthcare_service))) {
+      # Display a message if there's no valid data for social behaviors
+      ggplot() +
+        geom_point(aes(1, 1), size = 0) +
+        theme_void() +
+        ggtitle("No valid data to display")
+    } else {
+      # Create a ggplot bar plot without legend for social behaviors
+      ggplot(data.frame(Healthcare_Service = names(factor_counts_healthcare_service), Count = as.numeric(factor_counts_healthcare_service)),
+             aes(x = reorder(Healthcare_Service, -Count), y = Count, fill = Healthcare_Service)) +
+        geom_bar(stat = "identity") +
+        theme_minimal() +
+        labs(title = "Healthcare Service Needs Counts", x = "Healthcare Service Needs", y = "Count") +
         theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
         theme(legend.position = "none")
     }
