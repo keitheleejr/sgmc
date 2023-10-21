@@ -6,7 +6,10 @@ library(gt)
 library(gtExtras)
 
 
-data <- read_survey("data.csv") |> 
+# begin -------------------------------------------------------------------
+
+
+data <- read_survey("data/data.csv") |> 
   filter(irb == "Yes",
          (county == "Berrien" |
             county == "Lanier"))

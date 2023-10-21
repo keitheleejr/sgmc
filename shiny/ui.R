@@ -1,9 +1,10 @@
 # Source Files
 
-# source("../scripts/getData.R")
-# source("../scripts/subsetData.R")
-# source("../scripts/levels.R")
-# source("../scripts/functions.R")
+
+source("../scripts/getData.R")
+source("../scripts/subsetData.R")
+source("../scripts/levels.R")
+source("../scripts/functions.R")
 
 # Define UI
 ui <- fluidPage(
