@@ -1,6 +1,12 @@
+berrien <- data |> 
+  filter(county == "Berrien") 
+
+lanier <- data |> 
+  filter(county == "Lanier")
+
 social_behaviors_data <- data |> 
   filter(!is.na(social_behaviors)) |> 
-  select(gender, age, hispanic, race, education, hhi, county, social_behaviors) 
+  select(gender, age, hispanic, race, education, hhi, county, employment, social_behaviors) 
 
 social_behaviors_split <- social_behaviors_data |> 
   mutate(social_behaviors = strsplit(social_behaviors, ",")) |> 

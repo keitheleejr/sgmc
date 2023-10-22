@@ -3,27 +3,36 @@ library(gt)
 library(tools)
 
 # Plot ----
-create_plot <- function(data, column_name, x_label) {
+create_plot <- function(data, column_name) {
   data %>%
     pull({{ column_name }}) %>%
     strsplit(",") %>%
     unlist() %>%
     tibble(value = .) %>%
     filter(!is.na(value)) %>%
-    group_by(value) %>%
+    group_by(value, age) %>%
     count() %>%
-    ggplot(aes(x = reorder(value, n), y = n, fill = value)) +
-    geom_col() +
+    ggplot(aes(x = reorder(value, n), y = n)) +
+    geom_col(fill = "blue", 
+             width = 0.25,
+             position = "dodge") +
     coord_flip() +
     labs(
-      x = x_label,
-      y = "Number of Respondents",
+      x = "",
+      y = "",
       caption = paste("Updated", Sys.Date(), sep = " ")
     ) +
-    geom_text(aes(label = n, hjust = 1.25)) +
-    theme_classic() +
-    theme(legend.position = "none")
+    geom_text(aes(label = n, hjust = -0.15), size = 2) +
+    theme_minimal() +
+    theme(legend.position = "none",
+          text = element_text(family = "serif"),
+          plot.title = element_text(family = "serif", size = 20),
+          axis.title.x = element_text(family = "serif", size = 12),
+          axis.title.y = element_text(family = "serif", size = 12),
+          axis.text.x = element_text(family = "serif", size = 10),
+          axis.text.y = element_text(family = "serif", size = 10)) 
 }
+
 
 
 # Table ----
