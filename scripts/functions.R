@@ -10,10 +10,10 @@ create_plot <- function(data, column_name) {
     unlist() %>%
     tibble(value = .) %>%
     filter(!is.na(value)) %>%
-    group_by(value, age) %>%
+    group_by(value) %>%
     count() %>%
     ggplot(aes(x = reorder(value, n), y = n)) +
-    geom_col(fill = "blue", 
+    geom_col(fill = "midnightblue", 
              width = 0.25,
              position = "dodge") +
     coord_flip() +
