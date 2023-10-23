@@ -77,5 +77,100 @@ ggsave("plots/lanier_community_health_plot.jpeg", plot = lanier_community_health
 
 
 
+# create a dounut chart for Berrien ---------------------------------------
 
+health_status_count_berrien <- 
+  health_status_data |> 
+  filter(county == "Berrien") |>
+  select(health_status) |> 
+  group_by(health_status) |> 
+  count() 
+  
+# Compute percentages
+health_status_count_berrien$fraction = health_status_count_berrien$n / sum(health_status_count_berrien$n)
+
+# Compute the cumulative percentages (top of each rectangle)
+health_status_count_berrien$ymax = cumsum(health_status_count_berrien$fraction)
+
+# Compute the bottom of each rectangle
+health_status_count_berrien$ymin = c(0, head(health_status_count_berrien$ymax, n=-1))
+
+# Compute label position
+health_status_count_berrien$labelPosition <- (health_status_count_berrien$ymax + health_status_count_berrien$ymin) / 2
+
+# Compute a good label
+health_status_count_berrien$label <- paste0(health_status_count_berrien$health_status, "\n value: ", health_status_count_berrien$n)
+
+# Make the plot
+health_status_plot_berrien <- 
+  ggplot(health_status_count_berrien,
+         aes(
+           ymax = ymax,
+           ymin = ymin,
+           xmax = 4,
+           xmin = 3,
+           fill = health_status
+         )) +
+  geom_rect() +
+  geom_label(x = 2,
+             aes(y = labelPosition, label = label),
+             size = 1.5) +
+  coord_polar(theta = "y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(-1, 4)) + # Try to remove that to see how to make a pie chart
+  theme_void() +
+  theme(legend.position = "none")
+
+ggsave("plots/health_status_plot_berrien.jpeg", plot = health_status_plot_berrien, height = 3, width = 6)
+
+
+# create a dounut chart for Lanier ---------------------------------------
+
+health_status_count_lanier <- 
+  health_status_data |> 
+  filter(county == "Lanier") |>
+  select(health_status) |> 
+  group_by(health_status) |> 
+  count()
+
+# Compute percentages
+
+health_status_count_lanier$fraction = health_status_count_lanier$n / sum(health_status_count_lanier$n)
+
+# Compute the cumulative percentages (top of each rectangle)
+
+health_status_count_lanier$ymax = cumsum(health_status_count_lanier$fraction)
+
+# Compute the bottom of each rectangle
+
+health_status_count_lanier$ymin = c(0, head(health_status_count_lanier$ymax, n=-1))
+
+# Compute label position
+
+health_status_count_lanier$labelPosition <- (health_status_count_lanier$ymax + health_status_count_lanier$ymin) / 2
+
+# Compute a good label
+
+health_status_count_lanier$label <- paste0(health_status_count_lanier$health_status, "\n value: ", health_status_count_lanier$n)
+
+# Make the plot
+
+health_status_plot_lanier <- 
+  ggplot(health_status_count_lanier,
+         aes(
+           ymax = ymax,
+           ymin = ymin,
+           xmax = 4,
+           xmin = 3,
+           fill = health_status
+         )) +
+  geom_rect() +
+  geom_label(x = 2,
+             aes(y = labelPosition, label = label),
+             size = 1.5) +
+  coord_polar(theta = "y") + # Try to remove that to understand how the chart is built initially
+  xlim(c(-1, 4)) + # Try to remove that to see how to make a pie chart
+  theme_void() +
+  theme(legend.position = "none")
+
+ggsave("plots/health_status_plot_lanier.jpeg", plot = health_status_plot_lanier, height = 3, width = 6)
 

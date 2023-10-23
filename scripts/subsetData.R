@@ -26,3 +26,6 @@ healthcare_services_data <- data |>
   filter(!is.na(healthcare_service)) |> 
   select(gender, age, race, hispanic, education, hhi, county, healthcare_service)
 
+health_status_data <- data |> 
+  filter(!is.na(health_status)) |> 
+  select(gender, age, race, hispanic, education, hhi, county, health_status)

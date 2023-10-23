@@ -132,6 +132,44 @@ data$insurance <- recode(data$insurance,
 
 
 
+# clean health_status -----------------------------------------------------
+
+health_status_original <-
+  data.frame(
+    variable = c(
+      "2",
+      "A: Well and active",
+      "B: Good",
+      "C: Ok",
+      "D: Poor",
+      "F: Health is failing"
+    )
+  )
+
+# Patterns and replacements
+patterns2 <- c(
+  "2",
+  "A: Well and active",
+  "B: Good",
+  "C: Ok",
+  "D: Poor",
+  "F: Health is failing"
+)
+
+replacements2 <- c(
+  "Good",
+  "Well and active",
+  "Good",
+  "Ok",
+  "Poor",
+  "Health is failing"
+)
+
+# Loop through patterns and replacements
+for (i in seq_along(patterns)) {
+  data$health_status <-
+    gsub(patterns[i], replacements[i], data$health_status)
+}
 
 
 
