@@ -5,27 +5,31 @@ library(janitor)
 
 # Import Data -------------------------------------------------------------
 
-
+community_profile <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-ValdostaStateUniversity/1. Projects/SGMC/data/data.csv") |>
+  filter(irb == "Yes",
+         county %in% c("Berrien", "Lanier")) |>
+  clean_names() |> 
+  select(
+    gender,
+    race,
+    hispanic,
+    age,
+    race,
+    education,
+    married,
+    hhi,
+    housing
+  )
 
 data <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-ValdostaStateUniversity/1. Projects/SGMC/data/data.csv") |>
   filter(irb == "Yes",
          county %in% c("Berrien", "Lanier")) |>
   clean_names() |>
   rename(social_behaviors = social_behavior_fact_0_group,
-         community_health = community_health_0_group) |>
+         community_health = community_health_0_group,
+         outside_comm_where = q32) |>
   select(
-    gender,
-    age,
-    hispanic,
-    race,
-    education,
-    married,
-    hhi,
-    housing,
-    household,
     county,
-    employment,
-    transportation,
     social_behaviors,
     community_health,
     healthcare_service,
@@ -34,13 +38,12 @@ data <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-ValdostaState
     insurance,
     insurance_why,
     health_status,
-    chronic_health_count,
-    chronic_health,
     exercise,
     med_care_unable,
     medcare_unable_y,
     where_care,
     outside_comm,
+    outside_comm_where,
     difficult_care,
     pcp,
     no_pcp_y,

@@ -22,7 +22,7 @@ community_health_split <- community_health_data |>
   mutate(community_health = strsplit(community_health, ",")) |>
   unnest(community_health)
 
-healthcare_services_data <- data |> 
+healthcare_access_data <- data |> 
   filter(!is.na(healthcare_service)) |> 
   select(gender, age, race, hispanic, education, hhi, county, healthcare_service)
 

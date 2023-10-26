@@ -25,17 +25,17 @@ lanier_social_behavioral_plot <- create_plot(
 ggsave("plots/lanier_social_behavioral_plot.jpeg", plot = lanier_social_behavioral_plot, height = 3, width = 6)
 
 
-# plot healthcare services for Berrien ------------------------------------
+# plot healthcare access for Berrien ------------------------------------
 
-berrien_healthcare_services_plot <- create_plot(
+berrien_healthcare_access_plot <- create_plot(
   filter(healthcare_services_data, county == "Berrien")
   , healthcare_service)
 
 ggsave("plots/berrien_healthcare_services_plot.jpeg", plot = berrien_healthcare_services_plot, height = 3, width = 6)
 
-# plot healthcare services for Lanier ------------------------------------
+# plot healthcare access for Lanier ------------------------------------
 
-lanier_healthcare_services_plot <- create_plot(
+lanier_healthcare_access_plot <- create_plot(
   filter(healthcare_services_data, county == "Lanier")
   , healthcare_service)
 
