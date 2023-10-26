@@ -176,3 +176,41 @@ for (i in seq_along(patterns)) {
 
 
 
+# Relabel Screening Service -------------------------------------------------
+
+data$screening_service <-
+  ifelse(
+    data$screening_service %in% c("2", "Other (please specify)"),
+    "Other",
+    data$screening_service
+  )
+
+# Relabel medcare_unable_y -------------------------------------------------
+
+data$medcare_unable_y <-
+  ifelse(data$medcare_unable_y == "Other (please specify)", "Other",
+         data$medcare_unable_y)
+
+
+# Relabel where_care  -----------------------------------------------------
+
+data$where_care <-
+  ifelse(data$where_care == "Other (please specify)", "Other",
+         data$where_care)
+
+# Relabel outside_comm_where  ---------------------------------------------
+
+data$outside_comm_where <-
+  ifelse(
+    data$outside_comm_where %in% c("Other (please specify)", "Adel", "Cordele", "Moultrie"),
+    "Other",
+    data$outside_comm_where
+  )
+
+# Relabel no_pcp_y  -------------------------------------------------------
+
+data$no_pcp_y <-
+  ifelse(data$no_pcp_y == "Other (please specify)", "Other",
+         data$no_pcp_y)
+
+
