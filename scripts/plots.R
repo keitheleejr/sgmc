@@ -174,3 +174,84 @@ health_status_plot_lanier <-
 
 ggsave("plots/health_status_plot_lanier.jpeg", plot = health_status_plot_lanier, height = 3, width = 6)
 
+
+
+# Create screening service plot Berrien -----------------------------------
+
+berrien_screening_service_plot <- create_plot(
+  filter(screening_services_data, county == "Berrien"), screening_service)
+
+ggsave("plots/berrien_screening_service_plot.jpeg", plot = berrien_screening_service_plot, height = 3, width = 6)
+
+# Create screening service plot Lanier ------------------------------------
+
+lanier_screening_service_plot <- create_plot(
+  filter(screening_services_data, county == "Lanier"), screening_service)
+
+ggsave("plots/lanier_screening_service_plot.jpeg", plot = lanier_screening_service_plot, height = 3, width = 6)
+
+
+# Create difficulty accessing care plot Berrien ----------------------------
+
+berrien_difficulty_accessing_care_plot <- create_plot(
+  filter(difficulty_accessing_care_data, county == "Berrien"), difficulty_accessing_care)
+
+ggsave("plots/berrien_difficulty_accessing_care_plot.jpeg", plot = berrien_difficulty_accessing_care_plot, height = 3, width = 6)
+
+
+# Create difficulty accessing care plot Lanier -----------------------------
+
+lanier_difficulty_accessing_care_plot <- create_plot(
+  filter(difficulty_accessing_care_data, county == "Lanier"), difficulty_accessing_care)
+
+ggsave("plots/lanier_difficulty_accessing_care_plot.jpeg", plot = lanier_difficulty_accessing_care_plot, height = 3, width = 6)
+
+
+# Create medical care unable bar chart for Berrien --------------------------
+
+
+berrien_medical_care_unable_plot <- 
+  medical_care_unable_data |> 
+  filter(county == "Berrien") |>
+  ggplot(aes(x = "", y = n, fill = med_care_unable)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  geom_text(aes(label = scales::percent(n / sum(n))), position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("Not Able" = "orangered", "Able" = "seagreen4")) +
+  labs(fill = "") +
+  theme_void() +
+  theme(legend.position = "right")
+
+ggsave("plots/berrien_medical_care_unable_plot.jpeg", plot = berrien_medical_care_unable_plot, height = 3, width = 6)
+
+
+# Create medical care unable bar chart for Lanier ---------------------------
+
+lanier_medical_care_unable_plot <- 
+  medical_care_unable_data |> 
+  filter(county == "Lanier") |>
+  ggplot(aes(x = "", y = n, fill = med_care_unable)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  geom_text(aes(label = scales::percent(n / sum(n))), position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = c("Not Able" = "orangered", "Able" = "seagreen4")) +
+  labs(fill = "") +
+  theme_void() +
+  theme(legend.position = "right")
+
+ggsave("plots/lanier_medical_care_unable_plot.jpeg", plot = lanier_medical_care_unable_plot, height = 3, width = 6)
+
+# Create difficulty accessing care plot for Berrien -------------------------
+
+berrien_difficult_care_plot <- create_plot(
+  filter(difficult_care_split, county == "Berrien"), difficult_care)
+
+ggsave("plots/berrien_difficult_care_plot.jpeg", plot = berrien_difficult_care_plot, height = 3, width = 6)
+
+
+# Create difficulty accessing care plot for Lanier --------------------------
+
+lanier_difficult_care_plot <- create_plot(
+  filter(difficult_care_split, county == "Lanier"), difficult_care)
+
+ggsave("plots/lanier_difficult_care_plot.jpeg", plot = lanier_difficult_care_plot, height = 3, width = 6)

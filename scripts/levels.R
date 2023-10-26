@@ -43,11 +43,11 @@ screening_service_levels <- c(
 )
 
 perception_levels <- c(
-  "Very Favorable",
+  "Very favorable",
   "Favorable",
   "Neutral",
   "Unfavorable",
-  "Very Unfavorable"
+  "Very unfavorable"
 )
 
 exercise_levels <- c(
@@ -68,6 +68,19 @@ medcare_unable_y_levels <- c(
   "Lack of health insurance",
   "Lack of transportation",
   "Other"
+)
+
+where_care_levels <- c(
+  "Urgent Care or Walk-in clinic",
+  "Primary care physician",
+  "Public health department",
+  "Emergency room",
+  "Other (please specify)"
+)
+
+outside_comm_levels <- c(
+  "Yes",
+  "No"
 )
 
 outside_comm_where_levels <- c(

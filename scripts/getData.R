@@ -185,6 +185,15 @@ data$screening_service <-
     data$screening_service
   )
 
+
+# Recode medcare_unable
+
+data$med_care_unable <- recode(data$med_care_unable,
+                               "Yes" = "Not Able",
+                               "No" = "Able"
+)
+
+
 # Relabel medcare_unable_y -------------------------------------------------
 
 data$medcare_unable_y <-

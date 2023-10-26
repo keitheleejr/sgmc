@@ -37,9 +37,9 @@ create_plot <- function(data, column_name) {
 
 # Table ----
 
-create_frequency_table <- function(data, variable, levels) {
+create_frequency_table <- function(data, variable, levels, county) {
   data %>%
-    filter(!is.na({{ variable }})) %>%
+    filter(!is.na({{ variable }}), county == {{ county }}) %>%
     count({{ variable }}) %>%
     mutate(Percentage = round(n / sum(n) * 100, 2)) %>%
     arrange(desc(Percentage)) %>%
