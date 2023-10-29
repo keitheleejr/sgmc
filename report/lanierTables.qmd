@@ -1,0 +1,164 @@
+---
+title: "Lanier Tables"
+format: docx
+execute:
+  echo: false
+  warning: false
+  message: false
+  error: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+source("../scripts/getData.R")
+source("../scripts/functions.R")
+source("../scripts/subsetData.R")
+source("../scripts/levels.R")
+```
+
+
+
+Which choice best describes the community’s perception of the local hospital’s services? 
+
+```{r}
+
+# create frequency table screening services for Lanier ----------------------------
+
+lanier_screening_services_table <- 
+  create_frequency_table(data, perception, perception_levels, "Lanier")
+
+lanier_screening_services_table
+```
+
+
+Which statement best describes how many days each week that you engage in exercise for more than 30 minutes? 
+
+```{r}
+
+# create frequency table exercise for Lanier ----------------------------
+
+lanier_exercise_table <- 
+  create_frequency_table(data, exercise, exercise_levels, "Lanier")
+
+lanier_exercise_table
+```
+
+
+
+Unable to access care? Why? 
+
+```{r}
+# create frequency table medical care unable why for Lanier ----------------------------
+
+lanier_medical_care_unable_why_table <- 
+  create_frequency_table(data, medcare_unable_y, medcare_unable_y_levels, "Lanier")
+
+lanier_medical_care_unable_why_table
+```
+
+
+Where do you go for care? 
+
+```{r}
+
+# create frequency table where care for Lanier ----------------------------
+
+lanier_where_care_table <- 
+  create_frequency_table(data, where_care, where_care_levels, "Lanier")
+
+lanier_where_care_table
+
+```
+
+
+
+Outside?
+
+```{r}
+# create frequency table outside community for Lanier ----------------------------
+
+lanier_outside_community_table <- 
+  create_frequency_table(data, outside_comm, outside_comm_levels, "Lanier")
+
+lanier_outside_community_table
+```
+
+
+Where outside?
+
+```{r}
+
+# create frequency table outside_comm_where for Lanier ----------------------------
+
+lanier_outside_comm_where_table <- 
+  create_frequency_table(data, outside_comm_where, outside_comm_where_levels, "Lanier")
+
+lanier_outside_comm_where_table
+
+```
+
+Pcp?
+
+```{r}
+# create frequency table pcp for Lanier ----------------------------
+
+lanier_pcp_table <- 
+  create_frequency_table(data, pcp, pcp_levels, "Lanier")
+
+lanier_pcp_table
+
+```
+
+Wait time?
+
+```{r}
+# create frequency table wait_time for Lanier ----------------------------
+
+lanier_wait_time_table <- 
+  create_frequency_table(data, wait_time, wait_time_levels, "Lanier")
+
+lanier_wait_time_table
+```
+
+
+
+Specialist?
+
+```{r}
+
+
+# create frequency table specialist for Lanier ----------------------------
+
+lanier_specialist_table <- 
+  create_frequency_table(data, specialist, specialist_levels, "Lanier")
+  
+
+lanier_specialist_table
+```
+
+
+Telehealth?
+
+```{r}
+
+# create frequency table telehealth for Lanier ----------------------------
+
+lanier_telehealth_table <- 
+  create_frequency_table(data, telehealth, telehealth_levels, "Lanier")
+
+lanier_telehealth_table
+
+```
+
+
+Satisfaction?
+
+```{r}
+# create frequency table satisfaction for Lanier ----------------------------
+
+lanier_satisfaction_table <- 
+  create_frequency_table(data, satisfaction, satisfaction_levels, "Lanier")
+
+lanier_satisfaction_table
+```
