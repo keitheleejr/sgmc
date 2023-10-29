@@ -18,7 +18,8 @@ community_profile <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-
     education,
     married,
     hhi,
-    housing
+    housing,
+    age
   )
 
 data <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-ValdostaStateUniversity/1. Projects/SGMC/data/data.csv") |>
@@ -29,6 +30,7 @@ data <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-ValdostaState
          community_health = community_health_0_group,
          outside_comm_where = q32) |>
   select(
+    age,
     county,
     social_behaviors,
     community_health,
@@ -223,3 +225,23 @@ data$no_pcp_y <-
          data$no_pcp_y)
 
 
+# Relabel mecare_unable_y  ------------------------------------------------
+
+data$medcare_unable_y <-
+  ifelse(data$medcare_unable_y == "Other (please specify)", "Other",
+         data$medcare_unable_y)
+
+
+# Relabel where_care  -----------------------------------------------------
+
+data$where_care <-
+  ifelse(data$where_care == "Other (please specify)", "Other",
+         data$where_care)
+
+
+# Relabel wait_time  ------------------------------------------------------
+
+data$wait_time <- 
+  ifelse(data$wait_time == "Between 3-4 weeks", "Between 3 and 4 weeks",
+         data$wait_time)
+  

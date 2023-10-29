@@ -63,8 +63,8 @@ medcare_unable_levels <- c(
 )
 
 medcare_unable_y_levels <- c(
-  "Cost of prescriptions too high",
-  "Cost of doctor's visit too high",
+  "Cost of prescriptions or medicine were too high",
+  "Cost of doctor's visit was too high",
   "Lack of health insurance",
   "Lack of transportation",
   "Other"
@@ -75,7 +75,7 @@ where_care_levels <- c(
   "Primary care physician",
   "Public health department",
   "Emergency room",
-  "Other (please specify)"
+  "Other"
 )
 
 outside_comm_levels <- c(
@@ -103,17 +103,28 @@ no_pcp_y_levels <- c(
 
 wait_time_levels <- c(
   "Less than 1 week",
-  "1-2 weeks",
-  "3-4 weeks",
-  "More than 4 weeks"
+  "Between 1 and 2 weeks",
+  "Between 3 and 4 weeks",
+  "4 weeks or longer"
 )
 
 telehealth_levels <- c(
-  "Very Favorable",
-  "Favorable",
-  "Neutral",
-  "Unfavorable",
-  "Very Unfavorable"
+  "Very interested",
+  "Somewhat interested",
+  "Not interested",
+  "Opposed to using either service"
+)
+
+specialist_levels <- c(
+  "Yes",
+  "No"
 )
 
 
+satisfaction_levels <- c(
+  "Very favorable",
+  "Favorable",
+  "Neutral",
+  "Unfavorable",
+  "Very unfavorable"
+)
