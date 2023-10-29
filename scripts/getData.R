@@ -10,6 +10,7 @@ community_profile <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-
          county %in% c("Berrien", "Lanier")) |>
   clean_names() |> 
   select(
+    county,
     gender,
     race,
     hispanic,
