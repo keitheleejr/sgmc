@@ -39,12 +39,12 @@ create_plot <- function(data, column_name) {
 
 create_frequency_table <- function(data, variable, levels, county) {
   data %>%
-    filter(!is.na({{ variable }}), county == {{ county }}) %>%
+    filter(county == {{ county }}) %>%
     count({{ variable }}) %>%
+    filter(!is.na({{ variable }})) %>%  # Remove NA row
+    mutate({{ variable }} := factor({{ variable }}, levels = {{ levels }})) %>%
+    complete({{ variable }}, fill = list(n = 0)) %>%
     mutate(Percentage = round(n / sum(n) * 100, 2)) %>%
-    arrange(desc(Percentage)) %>%
-    mutate(Ordered = fct_relevel({{ variable }}, {{ levels }})) %>%
-    arrange(Ordered) %>%
     gt() %>%
     cols_label(
       {{ variable }} := "Response",
@@ -55,7 +55,7 @@ create_frequency_table <- function(data, variable, levels, county) {
       columns = {{ variable }}
     ) %>%
     tab_options(table.align = "left") %>%
-    cols_hide(Ordered) |> 
     tab_source_note(paste("Updated", Sys.Date(), sep = " "))
 }
+
 
