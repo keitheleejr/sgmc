@@ -20,7 +20,8 @@ community_health_data <- data |>
 
 community_health_split <- community_health_data |>
   mutate(community_health = strsplit(community_health, ",")) |>
-  unnest(community_health)
+  unnest(community_health) |> 
+  mutate(community_health = trimws(community_health, "right"))
 
 healthcare_access_data <- data |> 
   filter(!is.na(healthcare_service)) |> 
@@ -47,7 +48,8 @@ difficult_care_data <- data |>
 
 difficult_care_split <- difficult_care_data |>
   mutate(difficult_care = strsplit(difficult_care, ",")) |>
-  unnest(difficult_care)
+  unnest(difficult_care) |> 
+  mutate(difficult_care = trimws(difficult_care, "right"))
 
 
 

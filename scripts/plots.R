@@ -194,7 +194,7 @@ ggsave("plots/lanier_screening_service_plot.jpeg", plot = lanier_screening_servi
 # Create difficulty accessing care plot Berrien ----------------------------
 
 berrien_difficult_care_plot <- create_plot(
-  filter(difficult_care_data, county == "Berrien"), difficult_care)
+  filter(difficult_care_split, county == "Berrien"), difficult_care)
 
 ggsave("plots/berrien_difficult_care_plot.jpeg", plot = berrien_difficult_care_plot, height = 3, width = 6)
 
@@ -202,7 +202,7 @@ ggsave("plots/berrien_difficult_care_plot.jpeg", plot = berrien_difficult_care_p
 # Create difficulty accessing care plot Lanier -----------------------------
 
 lanier_difficult_care_plot <- create_plot(
-  filter(difficult_care_data, county == "Lanier"), difficult_care)
+  filter(difficult_care_split, county == "Lanier"), difficult_care)
 
 ggsave("plots/lanier_difficult_care_plot.jpeg", plot = lanier_difficult_care_plot, height = 3, width = 6)
 
@@ -241,18 +241,4 @@ lanier_medical_care_unable_plot <-
 
 ggsave("plots/lanier_medical_care_unable_plot.jpeg", plot = lanier_medical_care_unable_plot, height = 3, width = 6)
 
-# Create difficulty accessing care plot for Berrien -------------------------
-
-berrien_difficult_care_plot <- create_plot(
-  filter(difficult_care_split, county == "Berrien"), difficult_care)
-
-ggsave("plots/berrien_difficult_care_plot.jpeg", plot = berrien_difficult_care_plot, height = 3, width = 6)
-
-
-# Create difficulty accessing care plot for Lanier --------------------------
-
-lanier_difficult_care_plot <- create_plot(
-  filter(difficult_care_split, county == "Lanier"), difficult_care)
-
-ggsave("plots/lanier_difficult_care_plot.jpeg", plot = lanier_difficult_care_plot, height = 3, width = 6)
 
