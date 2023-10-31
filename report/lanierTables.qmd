@@ -162,3 +162,19 @@ lanier_satisfaction_table <-
 
 lanier_satisfaction_table
 ```
+
+
+Insurance?
+
+```{r}
+
+# create frequency table insurance for Lanier ----------------------------
+
+lanier_insurance_table <- 
+  create_frequency_table(data, insurance, insurance_levels, "Lanier")
+
+lanier_insurance_table
+
+```
+
+

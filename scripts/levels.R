@@ -128,3 +128,12 @@ satisfaction_levels <- c(
   "Unfavorable",
   "Very unfavorable"
 )
+
+
+insurance_levels <- c(
+  "Commercial Insurance",
+  "Medicare",
+  "Medicare Advantage",
+  "Medicaid",
+  "Self-Pay (No Insurance)"
+)

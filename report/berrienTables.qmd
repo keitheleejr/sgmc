@@ -172,3 +172,16 @@ berrien_satisfaction_table
 ```
 
 
+Insurance?
+
+```{r}
+
+# create frequency table insurance for Berrien ----------------------------
+
+berrien_insurance_table <- 
+  create_frequency_table(data, insurance, insurance_levels, "Berrien")
+
+berrien_insurance_table
+
+```   
+

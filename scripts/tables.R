@@ -115,3 +115,15 @@ berrien_satisfaction_table <-
 
 lanier_satisfaction_table <- 
   create_frequency_table(data, satisfaction, satisfaction_levels, "Lanier")
+
+# create frequency table insurance for Berrien ----------------------------
+
+berrien_insurance_table <- 
+  create_frequency_table(data, insurance, insurance_levels, "Berrien")
+
+# create frequency table insurance for Lanier ----------------------------
+
+lanier_insurance_table <- 
+  create_frequency_table(data, insurance, insurance_levels, "Lanier")
+
+
