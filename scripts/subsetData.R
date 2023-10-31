@@ -28,7 +28,8 @@ healthcare_access_data <- data |>
   select(county, healthcare_service)
 
 health_status_data <- data |> 
-  filter(!is.na(health_status)) |> 
+  filter(!is.na(health_status),
+         health_status != "2") |> 
   select(county, health_status)
 
 screening_services_data <- data |> 
