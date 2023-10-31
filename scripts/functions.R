@@ -3,7 +3,7 @@ library(gt)
 library(tools)
 
 # Plot ----
-create_plot <- function(data, column_name) {
+create_plot <- function(data, column_name, caption) {
   data %>%
     pull({{ column_name }}) %>%
     strsplit(",") %>%
@@ -13,14 +13,14 @@ create_plot <- function(data, column_name) {
     group_by(value) %>%
     count() %>%
     ggplot(aes(x = reorder(value, n), y = n)) +
-    geom_col(fill = "midnightblue", 
+    geom_col(fill = "#006f53", 
              width = 0.25,
              position = "dodge") +
     coord_flip() +
     labs(
       x = "",
       y = "",
-      caption = paste("Updated", Sys.Date(), sep = " ")
+      caption = {{ caption }}
     ) +
     geom_text(aes(label = n, hjust = -0.15), size = 2) +
     theme_minimal() +
