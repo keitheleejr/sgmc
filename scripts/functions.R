@@ -37,7 +37,7 @@ create_plot <- function(data, column_name, caption) {
 
 # Table ----
 
-create_frequency_table <- function(data, variable, levels, county) {
+create_frequency_table <- function(data, variable, levels, county, title, subtitle) {
   data %>%
     filter(county == {{ county }}) %>%
     count({{ variable }}) %>%
@@ -54,8 +54,20 @@ create_frequency_table <- function(data, variable, levels, county) {
       align = "left",
       columns = {{ variable }}
     ) %>%
-    tab_options(table.align = "left") %>%
-    tab_source_note(paste("Updated", Sys.Date(), sep = " "))
+    tab_options(table.align = "left",
+                heading.align = "left",
+                column_labels.background.color = "#006f53",
+                container.width = 500) |> 
+    tab_header(
+      title = {{ title }},
+      subtitle = {{ subtitle }}) |> 
+    tab_style(
+      style = cell_text(
+        color = "#006f53",
+        weight = "bold",
+        font = "serif"),
+      locations = cells_title(groups = "title")
+    )
 }
 
 
