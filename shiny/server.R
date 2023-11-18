@@ -37,7 +37,7 @@ server <- function(input, output) {
   
   # Reactive expression for filtering data based on selected factors for social factors
   filtered_healthcare_services_data <- reactive({
-    df <- healthcare_services_data  # Replace with your social factors data frame
+    df <- healthcare_access_data  # Replace with your social factors data frame
     if (input$county != "All") {
       df <- subset(df, county %in% input$county)
     }
@@ -68,11 +68,22 @@ server <- function(input, output) {
     } else {
       # Create a ggplot bar plot without legend for community health
       ggplot(data.frame(Community_Health = names(factor_counts), Count = as.numeric(factor_counts)),
-             aes(x = reorder(Community_Health, -Count), y = Count, fill = Community_Health)) +
-        geom_bar(stat = "identity") +
+             aes(x = reorder(Community_Health, Count), y = Count)) +
+        geom_col(fill = "#006f53",
+                 width = 0.5) +
+        coord_flip() +
         theme_minimal() +
-        labs(title = "Community Health Issue Counts", x = "Community Health Issue", y = "Count") +
-        theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+        labs(x = "",
+             y = "",
+             caption = "What do you think are the most important health problems in the community?") +
+        geom_text(aes(label = Count, hjust = 1.25), size = 4, color = "white") +
+        theme(legend.position = "none",
+              text = element_text(family = "serif"),
+              plot.caption = element_text(family = "serif", size = 16),
+              axis.title.x = element_text(family = "serif", size = 16),
+              axis.title.y = element_text(family = "serif", size = 16),
+              axis.text.x = element_text(family = "serif", size = 14),
+              axis.text.y = element_text(family = "serif", size = 14)) +
         theme(legend.position = "none")
     }
   })
