@@ -137,3 +137,17 @@ insurance_levels <- c(
   "Medicaid",
   "Self-Pay (No Insurance)"
 )
+
+
+additional_questions <- c(
+  "Which choice best describes the community’s perception of the local hospital’s services?",
+  "What type of health insurance coverage do you have?",
+  "When you need medical care, where do you typically receive care?",
+  "In the past 12 months, have you sought medical care outside of the local community or county in which you live?",
+  "If seeking care outside of the county, where do you go for care?",
+  "Do you have a primary care physician (PCP)?",
+  "What is your experience with appointment wait times for primary care providers?",
+  "Have you seen a healthcare specialist in the past 2 years (e.g., cardiologist, OBGYN, dermatologist, gastroenterologist, psychiatrist, etc.)?",
+  "Which statement best describes your willingness to use telehealth or telemedicine services (telehealth is defined as the use of electronic information or use of phones or computers to support long-distance clinical health care)?",
+  "If you have utilized hospital services or facilities in the past 3 years, how would you rate your experience(s)?"
+)

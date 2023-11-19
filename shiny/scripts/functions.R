@@ -69,5 +69,3 @@ create_frequency_table <- function(data, variable, levels, county, title, subtit
       locations = cells_title(groups = "title")
     )
 }
-
-
