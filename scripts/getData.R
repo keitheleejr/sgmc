@@ -2,10 +2,9 @@ library(qualtRics)
 library(tidyverse)
 library(janitor)
 
-
 # Import Data -------------------------------------------------------------
 
-community_profile <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-ValdostaStateUniversity/1. Projects/SGMC/data/data.csv") |>
+community_profile <- read_survey("data/data.csv") |>
   filter(irb == "Yes",
          county %in% c("Berrien", "Lanier")) |>
   clean_names() |> 
@@ -23,7 +22,7 @@ community_profile <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-
     age
   )
 
-data <- read_survey("/Users/keithlee/Library/CloudStorage/OneDrive-ValdostaStateUniversity/1. Projects/SGMC/data/data.csv") |>
+data <- read_survey("data/data.csv") |>
   filter(irb == "Yes",
          county %in% c("Berrien", "Lanier")) |>
   clean_names() |>
